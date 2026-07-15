@@ -1,0 +1,22 @@
+python3 train.py \
+  --warm-start checkpoints/xsum_model \
+  --checkpoint-dir checkpoints/xsum_model_v3 \
+  --epochs 7 \
+  --max-article-length 256 \
+  --max-summary-length 40 \
+  --batch-size 4 \
+  --learning-rate 0.0003
+
+
+python3 train.py \
+  --checkpoint-dir checkpoints/xsum_model_v3 \
+  --epochs 7 \
+  --max-article-length 256 \
+  --max-summary-length 40 \
+  --batch-size 4 \
+  --learning-rate 0.0003
+
+
+python3 inference.py \
+  --checkpoint-dir checkpoints/xsum_model_v3 \
+  --article-file article.txt

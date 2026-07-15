@@ -1,0 +1,49 @@
+{
+  "format_version": 3,
+  "dataset": "xsum",
+  "dataset_files": {
+    "train": "xsum_train.json",
+    "validation": "xsum_validation.json",
+    "test": "xsum_test.json"
+  },
+  "architecture": "lstm_bahdanau_direct_context_output",
+  "embedding_dimension": 48,
+  "hidden_size": 64,
+  "attention_size": 48,
+  "max_article_length": 256,
+  "max_summary_length": 40,
+  "vocabulary_size": 44409,
+  "minimum_frequency": 2,
+  "seed": 42,
+  "optimizer": "adam",
+  "learning_rate": 0.0003,
+  "batch_size": 4,
+  "gradient_clip": 5.0,
+  "training_samples": 7998,
+  "validation_samples": 500,
+  "epochs_completed": 5,
+  "current_run_epochs": 5,
+  "training_loss": [
+    7.400670504062827,
+    6.641689068486474,
+    6.263859868247959,
+    5.979123024337341,
+    5.756387687448919
+  ],
+  "validation_loss": [
+    6.959603646071805,
+    6.655092477399229,
+    6.4519503312107975,
+    6.337769415399547,
+    6.269181805402652
+  ],
+  "loss_ignored_tokens": [
+    "<PAD>",
+    "<UNK>"
+  ],
+  "summary_unknown_tokens": 757,
+  "summary_token_count": 172373,
+  "summary_unknown_rate": 0.004391639061802022,
+  "checkpoint_role": "latest",
+  "best_validation_loss": 6.337769415399547
+}
