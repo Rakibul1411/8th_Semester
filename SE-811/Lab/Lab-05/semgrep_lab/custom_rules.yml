@@ -1,0 +1,47 @@
+rules:
+  - id: python-mutable-defaults
+    pattern: |
+      def $FUNC(..., $ARG=[], ...):
+          ...
+    message: "Mutable default arguments persist state across function calls. Use '$ARG=None' instead."
+    languages: [python]
+    severity: ERROR
+
+  - id: enforce-with-statement-for-files
+    pattern: '$F = open(...)'
+    message: "Opening a file directly can lead to resource leaks. Use the 'with open(...) as $F:' context manager instead."
+    languages: [python]
+    severity: ERROR
+
+  - id: catch-bare-except
+    pattern: |
+      try:
+        ...
+      except:
+        ...
+    message: "Bare 'except:' blocks mask system-level exceptions like KeyboardInterrupt. Catch a specific exception."
+    languages: [python]
+    severity: WARNING
+
+  - id: detect-hardcoded-keys
+    patterns:
+      - pattern: $VAR = "$VALUE"
+      - metavariable-regex:
+          metavariable: $VAR
+          regex: (.*key.*|.*secret.*|.*password.*)
+    message: "Potential hardcoded secret found in variable '$VAR'."
+    languages: [python]
+    severity: WARNING
+  
+  - id: auto-upgrade-md5
+    pattern: hashlib.md5($ARG)
+    fix: hashlib.sha256($ARG)
+    message: "Insecure MD5 hash detected. Automatically upgrading to SHA-256."
+    languages: [python]
+    severity: ERROR
+
+  - id: detect-exec-use
+    pattern: 'exec(...)'
+    message: "Dangerous exec() usage detected. Avoid executing user-controlled input."
+    languages: [python]
+    severity: ERROR
